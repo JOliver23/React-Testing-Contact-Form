@@ -7,13 +7,17 @@ test("renders App without crashing", () => {
   render(<App />);
 });
 
-test("form is present", () => {
-  expect(ContactForm).toBe(ContactForm);
-});
-
-test("submit form works", () => {
-  // const expected = "Edd";
-  // const actual = getByText('first name');
+test("form is present", () => { 
   const {getByText} = render(<App />);
   getByText(/first name/i);
+  getByText(/last name/i);
+  getByText(/email/i);
+  getByText(/message/i);
+})
+
+test("form entries work as expected", () => {
+  const { getByTestId } = render(<App />);
+  const nameEntryElement = getByTestId("fName");
+  console.log("jo: App.test.js: form: nameEntry", nameEntryElement);
+
 })
