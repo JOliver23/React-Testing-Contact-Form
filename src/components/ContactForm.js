@@ -11,7 +11,7 @@ const ContactForm = () => {
 
   const onSubmit = (data) => {
     setData(data);
-    console.log(data);
+    console.log("jo: ContactForm.js: Contact Form: OnSubmit: data being set", data);
   };
 
   return (
