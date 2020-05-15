@@ -17,7 +17,27 @@ test("form is present", () => {
 
 test("form entries work as expected", () => {
   const { getByTestId } = render(<App />);
-  const nameEntryElement = getByTestId("fName");
-  console.log("jo: App.test.js: form: nameEntry", nameEntryElement);
+  const fName = getByTestId("fName");
+  const lName = getByTestId("lName")
+  //console.log("jo: App.test.js: form: nameEntry", fName);
+  expect(fName.placeholder).toBe("Edd");
+  expect(lName.placeholder).toBe("Burke");
+})
 
+test("form entries other than placeholder", () => {
+  const { getByTestId} = render(<ContactForm />);
+  const firstName = getByTestId("fName");
+  const lastName = getByTestId("lName");
+  const emailField = getByTestId("eMail");
+  const msgField = getByTestId("msg");
+  //console.log(firstName);
+  fireEvent.input(firstName, { target: {value: "Jordan"}});
+  fireEvent.input(lastName, {target: {value: "Oliver"}});
+  fireEvent.input(emailField, {target: {value: "scoop@cat.com"}})
+  fireEvent.input(msgField, {target: {value: "hi"}})
+
+  expect(firstName).toHaveValue("Jordan");
+  expect(lastName.value).toBe("Oliver");
+  expect(emailField.value).toBe("scoop@cat.com");
+  expect(msgField.value).toBe("hi");
 })
